@@ -1,0 +1,982 @@
+use biblioteca;
+
+db.createCollection("libros")
+db.createCollection("usuarios")
+db.createCollection("prestamos")
+
+
+db.libros.insertMany([
+  {
+    book_id: "B001",
+    titulo: "Cien años de soledad",
+    autor: "Gabriel García Márquez",
+    genero: ["Realismo mágico", "Novela"],
+    anio_publicacion: 1967,
+    isbn: "978-0307474728",
+    copias_disponibles: 3,
+    ubicacion: "Sección A3"
+  },
+  {
+    book_id: "B002",
+    titulo: "El amor en los tiempos del cólera",
+    autor: "Gabriel García Márquez",
+    genero: ["Romance", "Novela"],
+    anio_publicacion: 1985,
+    isbn: "978-0307389732",
+    copias_disponibles: 2,
+    ubicacion: "Sección B1"
+  },
+  {
+    book_id: "B003",
+    titulo: "1984",
+    autor: "George Orwell",
+    genero: ["Distopía", "Ficción política"],
+    anio_publicacion: 1949,
+    isbn: "978-0451524935",
+    copias_disponibles: 4,
+    ubicacion: "Sección C4"
+  },
+  {
+    book_id: "B004",
+    titulo: "Don Quijote de la Mancha",
+    autor: "Miguel de Cervantes",
+    genero: ["Clásico", "Novela"],
+    anio_publicacion: 1605,
+    isbn: "978-8491050076",
+    copias_disponibles: 5,
+    ubicacion: "Sección A1"
+  },
+  {
+    book_id: "B005",
+    titulo: "Orgullo y prejuicio",
+    autor: "Jane Austen",
+    genero: ["Romance", "Novela"],
+    anio_publicacion: 1813,
+    isbn: "978-0141439518",
+    copias_disponibles: 3,
+    ubicacion: "Sección B2"
+  },
+  {
+    book_id: "B006",
+    titulo: "Matar a un ruiseñor",
+    autor: "Harper Lee",
+    genero: ["Drama", "Novela"],
+    anio_publicacion: 1960,
+    isbn: "978-0060935467",
+    copias_disponibles: 4,
+    ubicacion: "Sección C3"
+  },
+  {
+    book_id: "B007",
+    titulo: "La Odisea",
+    autor: "Homero",
+    genero: ["Épico", "Poesía"],
+    anio_publicacion: -700,
+    isbn: "978-0140268867",
+    copias_disponibles: 2,
+    ubicacion: "Sección D1"
+  },
+  {
+    book_id: "B008",
+    titulo: "Crimen y castigo",
+    autor: "Fiódor Dostoyevski",
+    genero: ["Filosofía", "Novela"],
+    anio_publicacion: 1866,
+    isbn: "978-0140449136",
+    copias_disponibles: 3,
+    ubicacion: "Sección E4"
+  },
+  {
+    book_id: "B009",
+    titulo: "El gran Gatsby",
+    autor: "F. Scott Fitzgerald",
+    genero: ["Drama", "Novela"],
+    anio_publicacion: 1925,
+    isbn: "978-0743273565",
+    copias_disponibles: 6,
+    ubicacion: "Sección F2"
+  },
+  {
+    book_id: "B010",
+    titulo: "Cumbres Borrascosas",
+    autor: "Emily Brontë",
+    genero: ["Romance", "Novela"],
+    anio_publicacion: 1847,
+    isbn: "978-0141439556",
+    copias_disponibles: 4,
+    ubicacion: "Sección G3"
+  },
+  {
+    book_id: "B011",
+    titulo: "La Metamorfosis",
+    autor: "Franz Kafka",
+    genero: ["Ficción", "Novela corta"],
+    anio_publicacion: 1915,
+    isbn: "978-0143124272",
+    copias_disponibles: 5,
+    ubicacion: "Sección H2"
+  },
+  {
+    book_id: "B012",
+    titulo: "En busca del tiempo perdido",
+    autor: "Marcel Proust",
+    genero: ["Modernismo", "Novela"],
+    anio_publicacion: 1913,
+    isbn: "978-0142437964",
+    copias_disponibles: 3,
+    ubicacion: "Sección I1"
+  },
+  {
+    book_id: "B013",
+    titulo: "El extranjero",
+    autor: "Albert Camus",
+    genero: ["Existencialismo", "Novela"],
+    anio_publicacion: 1942,
+    isbn: "978-0679720201",
+    copias_disponibles: 4,
+    ubicacion: "Sección J2"
+  }
+])
+
+
+db.libros.insertMany([
+  {
+    book_id: "B014",
+    titulo: "Fahrenheit 451",
+    autor: "Ray Bradbury",
+    genero: ["Distopía", "Ciencia ficción"],
+    anio_publicacion: 1953,
+    isbn: "978-1451673319",
+    copias_disponibles: 4,
+    ubicacion: "Sección K1"
+  },
+  {
+    book_id: "B015",
+    titulo: "El señor de los anillos",
+    autor: "J.R.R. Tolkien",
+    genero: ["Fantasía", "Aventura"],
+    anio_publicacion: 1954,
+    isbn: "978-0544003415",
+    copias_disponibles: 6,
+    ubicacion: "Sección L2"
+  },
+  {
+    book_id: "B016",
+    titulo: "Moby Dick",
+    autor: "Herman Melville",
+    genero: ["Aventura", "Clásico"],
+    anio_publicacion: 1851,
+    isbn: "978-1503280786",
+    copias_disponibles: 3,
+    ubicacion: "Sección M3"
+  },
+  {
+    book_id: "B017",
+    titulo: "La isla del tesoro",
+    autor: "Robert Louis Stevenson",
+    genero: ["Aventura", "Novela"],
+    anio_publicacion: 1883,
+    isbn: "978-0140437683",
+    copias_disponibles: 5,
+    ubicacion: "Sección N1"
+  },
+  {
+    book_id: "B018",
+    titulo: "Drácula",
+    autor: "Bram Stoker",
+    genero: ["Horror", "Clásico"],
+    anio_publicacion: 1897,
+    isbn: "978-0486411095",
+    copias_disponibles: 4,
+    ubicacion: "Sección O2"
+  },
+  {
+    book_id: "B019",
+    titulo: "Frankenstein",
+    autor: "Mary Shelley",
+    genero: ["Horror", "Ciencia ficción"],
+    anio_publicacion: 1818,
+    isbn: "978-0486282114",
+    copias_disponibles: 5,
+    ubicacion: "Sección P3"
+  },
+  {
+    book_id: "B020",
+    titulo: "Los hermanos Karamazov",
+    autor: "Fiódor Dostoyevski",
+    genero: ["Filosofía", "Novela"],
+    anio_publicacion: 1880,
+    isbn: "978-0140449242",
+    copias_disponibles: 2,
+    ubicacion: "Sección Q4"
+  },
+  {
+    book_id: "B021",
+    titulo: "Anna Karenina",
+    autor: "León Tolstói",
+    genero: ["Drama", "Romance"],
+    anio_publicacion: 1878,
+    isbn: "978-0143035008",
+    copias_disponibles: 3,
+    ubicacion: "Sección R1"
+  },
+  {
+    book_id: "B022",
+    titulo: "El retrato de Dorian Gray",
+    autor: "Oscar Wilde",
+    genero: ["Filosofía", "Novela"],
+    anio_publicacion: 1890,
+    isbn: "978-0141439570",
+    copias_disponibles: 4,
+    ubicacion: "Sección S2"
+  },
+  {
+    book_id: "B023",
+    titulo: "La Divina Comedia",
+    autor: "Dante Alighieri",
+    genero: ["Poesía", "Épico"],
+    anio_publicacion: 1320,
+    isbn: "978-0142437223",
+    copias_disponibles: 3,
+    ubicacion: "Sección T3"
+  }
+])
+
+
+db.libros.insertMany([
+  {
+    book_id: "B024",
+    titulo: "Cien años de soledad",
+    autor: "Gabriel García Márquez",
+    genero: ["Realismo mágico", "Novela"],
+    anio_publicacion: 1967,
+    isbn: "978-0307474728",
+    copias_disponibles: 4,
+    ubicacion: "Sección U1"
+  },
+  {
+    book_id: "B025",
+    titulo: "1984",
+    autor: "George Orwell",
+    genero: ["Distopía", "Ciencia ficción"],
+    anio_publicacion: 1949,
+    isbn: "978-0451524935",
+    copias_disponibles: 6,
+    ubicacion: "Sección V2"
+  },
+  {
+    book_id: "B026",
+    titulo: "El amor en los tiempos del cólera",
+    autor: "Gabriel García Márquez",
+    genero: ["Romance", "Novela"],
+    anio_publicacion: 1985,
+    isbn: "978-0307389732",
+    copias_disponibles: 3,
+    ubicacion: "Sección W3"
+  },
+  {
+    book_id: "B027",
+    titulo: "Rayuela",
+    autor: "Julio Cortázar",
+    genero: ["Realismo mágico", "Novela"],
+    anio_publicacion: 1963,
+    isbn: "978-8466332393",
+    copias_disponibles: 5,
+    ubicacion: "Sección X1"
+  },
+  {
+    book_id: "B028",
+    titulo: "Las uvas de la ira",
+    autor: "John Steinbeck",
+    genero: ["Drama", "Novela"],
+    anio_publicacion: 1939,
+    isbn: "978-0143039433",
+    copias_disponibles: 4,
+    ubicacion: "Sección Y2"
+  },
+  {
+    book_id: "B029",
+    titulo: "Ulises",
+    autor: "James Joyce",
+    genero: ["Modernismo", "Novela"],
+    anio_publicacion: 1922,
+    isbn: "978-0199535675",
+    copias_disponibles: 3,
+    ubicacion: "Sección Z3"
+  },
+  {
+    book_id: "B030",
+    titulo: "La sombra del viento",
+    autor: "Carlos Ruiz Zafón",
+    genero: ["Misterio", "Novela"],
+    anio_publicacion: 2001,
+    isbn: "978-8499088927",
+    copias_disponibles: 5,
+    ubicacion: "Sección A2"
+  },
+  {
+    book_id: "B031",
+    titulo: "El nombre de la rosa",
+    autor: "Umberto Eco",
+    genero: ["Misterio", "Histórico"],
+    anio_publicacion: 1980,
+    isbn: "978-0156001311",
+    copias_disponibles: 4,
+    ubicacion: "Sección B3"
+  },
+  {
+    book_id: "B032",
+    titulo: "La insoportable levedad del ser",
+    autor: "Milan Kundera",
+    genero: ["Filosofía", "Novela"],
+    anio_publicacion: 1984,
+    isbn: "978-0060932138",
+    copias_disponibles: 2,
+    ubicacion: "Sección C4"
+  },
+  {
+    book_id: "B033",
+    titulo: "Los pilares de la Tierra",
+    autor: "Ken Follett",
+    genero: ["Histórico", "Novela"],
+    anio_publicacion: 1989,
+    isbn: "978-0451166897",
+    copias_disponibles: 6,
+    ubicacion: "Sección D1"
+  }
+])
+
+
+db.libros.insertMany([
+  {
+    book_id: "B034",
+    titulo: "La casa de los espíritus",
+    autor: "Isabel Allende",
+    genero: ["Realismo mágico", "Novela"],
+    anio_publicacion: 1982,
+    isbn: "978-0553383805",
+    copias_disponibles: 3,
+    ubicacion: "Sección E2"
+  },
+  {
+    book_id: "B035",
+    titulo: "El código Da Vinci",
+    autor: "Dan Brown",
+    genero: ["Thriller", "Misterio"],
+    anio_publicacion: 2003,
+    isbn: "978-0307474278",
+    copias_disponibles: 6,
+    ubicacion: "Sección F3"
+  },
+  {
+    book_id: "B036",
+    titulo: "Orgullo y prejuicio",
+    autor: "Jane Austen",
+    genero: ["Romance", "Clásico"],
+    anio_publicacion: 1813,
+    isbn: "978-0141439518",
+    copias_disponibles: 4,
+    ubicacion: "Sección G1"
+  },
+  {
+    book_id: "B037",
+    titulo: "Crimen y castigo",
+    autor: "Fiódor Dostoyevski",
+    genero: ["Drama", "Filosofía"],
+    anio_publicacion: 1866,
+    isbn: "978-0486415871",
+    copias_disponibles: 5,
+    ubicacion: "Sección H2"
+  },
+  {
+    book_id: "B038",
+    titulo: "El retrato de una dama",
+    autor: "Henry James",
+    genero: ["Drama", "Novela"],
+    anio_publicacion: 1881,
+    isbn: "978-0141441268",
+    copias_disponibles: 2,
+    ubicacion: "Sección I3"
+  },
+  {
+    book_id: "B039",
+    titulo: "Los miserables",
+    autor: "Victor Hugo",
+    genero: ["Drama", "Histórico"],
+    anio_publicacion: 1862,
+    isbn: "978-0451419436",
+    copias_disponibles: 4,
+    ubicacion: "Sección J4"
+  },
+  {
+    book_id: "B040",
+    titulo: "Don Quijote de la Mancha",
+    autor: "Miguel de Cervantes",
+    genero: ["Aventura", "Clásico"],
+    anio_publicacion: 1605,
+    isbn: "978-0060934347",
+    copias_disponibles: 6,
+    ubicacion: "Sección K2"
+  },
+  {
+    book_id: "B041",
+    titulo: "En el camino",
+    autor: "Jack Kerouac",
+    genero: ["Novela", "Aventura"],
+    anio_publicacion: 1957,
+    isbn: "978-0140283297",
+    copias_disponibles: 3,
+    ubicacion: "Sección L3"
+  },
+  {
+    book_id: "B042",
+    titulo: "La metamorfosis",
+    autor: "Franz Kafka",
+    genero: ["Filosofía", "Novela corta"],
+    anio_publicacion: 1915,
+    isbn: "978-0143105244",
+    copias_disponibles: 5,
+    ubicacion: "Sección M1"
+  },
+  {
+    book_id: "B043",
+    titulo: "Memorias de una geisha",
+    autor: "Arthur Golden",
+    genero: ["Histórico", "Drama"],
+    anio_publicacion: 1997,
+    isbn: "978-0679781585",
+    copias_disponibles: 4,
+    ubicacion: "Sección N2"
+  }
+])
+
+
+
+db.libros.insertMany([
+  {
+    book_id: "B044",
+    titulo: "Matar a un ruiseñor",
+    autor: "Harper Lee",
+    genero: ["Drama", "Clásico"],
+    anio_publicacion: 1960,
+    isbn: "978-0060935467",
+    copias_disponibles: 5,
+    ubicacion: "Sección O1"
+  },
+  {
+    book_id: "B045",
+    titulo: "El gran Gatsby",
+    autor: "F. Scott Fitzgerald",
+    genero: ["Clásico", "Novela"],
+    anio_publicacion: 1925,
+    isbn: "978-0743273565",
+    copias_disponibles: 4,
+    ubicacion: "Sección P2"
+  },
+  {
+    book_id: "B046",
+    titulo: "Frankenstein",
+    autor: "Mary Shelley",
+    genero: ["Horror", "Clásico"],
+    anio_publicacion: 1818,
+    isbn: "978-0486282114",
+    copias_disponibles: 6,
+    ubicacion: "Sección Q3"
+  },
+  {
+    book_id: "B047",
+    titulo: "El señor de los anillos",
+    autor: "J.R.R. Tolkien",
+    genero: ["Fantasía", "Aventura"],
+    anio_publicacion: 1954,
+    isbn: "978-0544003415",
+    copias_disponibles: 3,
+    ubicacion: "Sección R1"
+  },
+  {
+    book_id: "B048",
+    titulo: "Drácula",
+    autor: "Bram Stoker",
+    genero: ["Horror", "Clásico"],
+    anio_publicacion: 1897,
+    isbn: "978-0141439846",
+    copias_disponibles: 4,
+    ubicacion: "Sección S2"
+  },
+  {
+    book_id: "B049",
+    titulo: "La divina comedia",
+    autor: "Dante Alighieri",
+    genero: ["Poesía", "Clásico"],
+    anio_publicacion: 1320,
+    isbn: "978-0199535644",
+    copias_disponibles: 2,
+    ubicacion: "Sección T3"
+  },
+  {
+    book_id: "B050",
+    titulo: "Hamlet",
+    autor: "William Shakespeare",
+    genero: ["Tragedia", "Clásico"],
+    anio_publicacion: 1609,
+    isbn: "978-0743477123",
+    copias_disponibles: 5,
+    ubicacion: "Sección U4"
+  },
+  {
+    book_id: "B051",
+    titulo: "La Iliada",
+    autor: "Homero",
+    genero: ["Épico", "Clásico"],
+    anio_publicacion: -800,
+    isbn: "978-0140275360",
+    copias_disponibles: 3,
+    ubicacion: "Sección V1"
+  },
+  {
+    book_id: "B052",
+    titulo: "La Odisea",
+    autor: "Homero",
+    genero: ["Épico", "Clásico"],
+    anio_publicacion: -725,
+    isbn: "978-0140268867",
+    copias_disponibles: 4,
+    ubicacion: "Sección W2"
+  },
+  {
+    book_id: "B053",
+    titulo: "Cumbres borrascosas",
+    autor: "Emily Brontë",
+    genero: ["Drama", "Romance"],
+    anio_publicacion: 1847,
+    isbn: "978-0141439556",
+    copias_disponibles: 3,
+    ubicacion: "Sección X3"
+  }
+])
+
+
+-- usuarios
+
+db.usuarios.insertMany([
+  {
+    user_id: "U001",
+    nombre: "Juan Pérez",
+    correo: "juan.perez@example.com",
+    telefono: "3001234567",
+    direccion: "Calle 123 #45-67",
+    membresia_activa: true
+  },
+  {
+    user_id: "U002",
+    nombre: "María López",
+    correo: "maria.lopez@example.com",
+    telefono: "3102345678",
+    direccion: "Carrera 7 #89-10",
+    membresia_activa: true
+  },
+  {
+    user_id: "U003",
+    nombre: "Carlos Rodríguez",
+    correo: "carlos.rodriguez@example.com",
+    telefono: "3203456789",
+    direccion: "Avenida 15 #34-56",
+    membresia_activa: false
+  },
+  {
+    user_id: "U004",
+    nombre: "Ana González",
+    correo: "ana.gonzalez@example.com",
+    telefono: "3004567890",
+    direccion: "Calle 12 #78-90",
+    membresia_activa: true
+  },
+  {
+    user_id: "U005",
+    nombre: "Luis Martínez",
+    correo: "luis.martinez@example.com",
+    telefono: "3105678901",
+    direccion: "Carrera 5 #23-45",
+    membresia_activa: false
+  },
+  {
+    user_id: "U006",
+    nombre: "Laura Sánchez",
+    correo: "laura.sanchez@example.com",
+    telefono: "3206789012",
+    direccion: "Avenida 6 #12-34",
+    membresia_activa: true
+  },
+  {
+    user_id: "U007",
+    nombre: "Pedro Ramírez",
+    correo: "pedro.ramirez@example.com",
+    telefono: "3007890123",
+    direccion: "Calle 7 #45-67",
+    membresia_activa: true
+  },
+  {
+    user_id: "U008",
+    nombre: "Marta Castro",
+    correo: "marta.castro@example.com",
+    telefono: "3108901234",
+    direccion: "Carrera 8 #56-78",
+    membresia_activa: false
+  },
+  {
+    user_id: "U009",
+    nombre: "Jorge Morales",
+    correo: "jorge.morales@example.com",
+    telefono: "3209012345",
+    direccion: "Avenida 9 #67-89",
+    membresia_activa: true
+  },
+  {
+    user_id: "U010",
+    nombre: "Elena Torres",
+    correo: "elena.torres@example.com",
+    telefono: "3000123456",
+    direccion: "Calle 10 #89-10",
+    membresia_activa: true
+  }
+])
+
+
+db.usuarios.insertMany([
+  {
+    user_id: "U011",
+    nombre: "Sofía Herrera",
+    correo: "sofia.herrera@example.com",
+    telefono: "3002345678",
+    direccion: "Calle 45 #23-45",
+    membresia_activa: true
+  },
+  {
+    user_id: "U012",
+    nombre: "Daniel Ríos",
+    correo: "daniel.rios@example.com",
+    telefono: "3103456789",
+    direccion: "Carrera 10 #67-89",
+    membresia_activa: true
+  },
+  {
+    user_id: "U013",
+    nombre: "Isabel Méndez",
+    correo: "isabel.mendez@example.com",
+    telefono: "3204567890",
+    direccion: "Avenida 11 #34-56",
+    membresia_activa: false
+  },
+  {
+    user_id: "U014",
+    nombre: "Gabriel Silva",
+    correo: "gabriel.silva@example.com",
+    telefono: "3005678901",
+    direccion: "Calle 14 #78-90",
+    membresia_activa: true
+  },
+  {
+    user_id: "U015",
+    nombre: "Carmen Peña",
+    correo: "carmen.pena@example.com",
+    telefono: "3106789012",
+    direccion: "Carrera 12 #45-67",
+    membresia_activa: false
+  },
+  {
+    user_id: "U016",
+    nombre: "Pablo Vargas",
+    correo: "pablo.vargas@example.com",
+    telefono: "3207890123",
+    direccion: "Avenida 13 #56-78",
+    membresia_activa: true
+  },
+  {
+    user_id: "U017",
+    nombre: "Teresa Romero",
+    correo: "teresa.romero@example.com",
+    telefono: "3008901234",
+    direccion: "Calle 16 #67-89",
+    membresia_activa: true
+  },
+  {
+    user_id: "U018",
+    nombre: "Fernando Castro",
+    correo: "fernando.castro@example.com",
+    telefono: "3109012345",
+    direccion: "Carrera 15 #89-10",
+    membresia_activa: true
+  },
+  {
+    user_id: "U019",
+    nombre: "Gloria Flores",
+    correo: "gloria.flores@example.com",
+    telefono: "3200123456",
+    direccion: "Avenida 17 #12-34",
+    membresia_activa: false
+  },
+  {
+    user_id: "U020",
+    nombre: "Ricardo Luna",
+    correo: "ricardo.luna@example.com",
+    telefono: "3001234567",
+    direccion: "Calle 18 #23-45",
+    membresia_activa: true
+  }
+])
+
+
+db.usuarios.insertMany([
+  {
+    user_id: "U021",
+    nombre: "Patricia Ortiz",
+    correo: "patricia.ortiz@example.com",
+    telefono: "3102345678",
+    direccion: "Carrera 19 #34-56",
+    membresia_activa: true
+  },
+  {
+    user_id: "U022",
+    nombre: "Andrés Jiménez",
+    correo: "andres.jimenez@example.com",
+    telefono: "3203456789",
+    direccion: "Avenida 20 #45-67",
+    membresia_activa: false
+  },
+  {
+    user_id: "U023",
+    nombre: "Rosa Díaz",
+    correo: "rosa.diaz@example.com",
+    telefono: "3004567890",
+    direccion: "Calle 21 #56-78",
+    membresia_activa: true
+  },
+  {
+    user_id: "U024",
+    nombre: "Julián García",
+    correo: "julian.garcia@example.com",
+    telefono: "3105678901",
+    direccion: "Carrera 22 #67-89",
+    membresia_activa: true
+  },
+  {
+    user_id: "U025",
+    nombre: "Claudia Pineda",
+    correo: "claudia.pineda@example.com",
+    telefono: "3206789012",
+    direccion: "Avenida 23 #78-90",
+    membresia_activa: false
+  },
+  {
+    user_id: "U026",
+    nombre: "Miguel Herrera",
+    correo: "miguel.herrera@example.com",
+    telefono: "3007890123",
+    direccion: "Calle 24 #89-10",
+    membresia_activa: true
+  },
+  {
+    user_id: "U027",
+    nombre: "Paula Rojas",
+    correo: "paula.rojas@example.com",
+    telefono: "3108901234",
+    direccion: "Carrera 25 #12-34",
+    membresia_activa: true
+  },
+  {
+    user_id: "U028",
+    nombre: "Tomás Castillo",
+    correo: "tomas.castillo@example.com",
+    telefono: "3209012345",
+    direccion: "Avenida 26 #23-45",
+    membresia_activa: false
+  },
+  {
+    user_id: "U029",
+    nombre: "Luisa Cárdenas",
+    correo: "luisa.cardenas@example.com",
+    telefono: "3000123456",
+    direccion: "Calle 27 #34-56",
+    membresia_activa: true
+  },
+  {
+    user_id: "U030",
+    nombre: "Héctor Mendoza",
+    correo: "hector.mendoza@example.com",
+    telefono: "3101234567",
+    direccion: "Carrera 28 #45-67",
+    membresia_activa: true
+  }
+])
+
+
+-- prestamos
+
+db.prestamos.insertMany([
+  {
+    prestamo_id: "P001",
+    user_id: "U001",
+    libro_id: "L001",
+    fecha_prestamo: new Date("2024-10-01"),
+    fecha_devolucion: new Date("2024-10-15"),
+    devuelto: false
+  },
+  {
+    prestamo_id: "P002",
+    user_id: "U002",
+    libro_id: "L002",
+    fecha_prestamo: new Date("2024-10-02"),
+    fecha_devolucion: new Date("2024-10-16"),
+    devuelto: true
+  },
+  {
+    prestamo_id: "P003",
+    user_id: "U003",
+    libro_id: "L003",
+    fecha_prestamo: new Date("2024-10-03"),
+    fecha_devolucion: new Date("2024-10-17"),
+    devuelto: false
+  },
+  {
+    prestamo_id: "P004",
+    user_id: "U004",
+    libro_id: "L004",
+    fecha_prestamo: new Date("2024-10-04"),
+    fecha_devolucion: new Date("2024-10-18"),
+    devuelto: true
+  },
+  {
+    prestamo_id: "P005",
+    user_id: "U005",
+    libro_id: "L005",
+    fecha_prestamo: new Date("2024-10-05"),
+    fecha_devolucion: new Date("2024-10-19"),
+    devuelto: false
+  },
+  {
+    prestamo_id: "P006",
+    user_id: "U006",
+    libro_id: "L006",
+    fecha_prestamo: new Date("2024-10-06"),
+    fecha_devolucion: new Date("2024-10-20"),
+    devuelto: true
+  },
+  {
+    prestamo_id: "P007",
+    user_id: "U007",
+    libro_id: "L007",
+    fecha_prestamo: new Date("2024-10-07"),
+    fecha_devolucion: new Date("2024-10-21"),
+    devuelto: false
+  },
+  {
+    prestamo_id: "P008",
+    user_id: "U008",
+    libro_id: "L008",
+    fecha_prestamo: new Date("2024-10-08"),
+    fecha_devolucion: new Date("2024-10-22"),
+    devuelto: true
+  },
+  {
+    prestamo_id: "P009",
+    user_id: "U009",
+    libro_id: "L009",
+    fecha_prestamo: new Date("2024-10-09"),
+    fecha_devolucion: new Date("2024-10-23"),
+    devuelto: false
+  },
+  {
+    prestamo_id: "P010",
+    user_id: "U010",
+    libro_id: "L010",
+    fecha_prestamo: new Date("2024-10-10"),
+    fecha_devolucion: new Date("2024-10-24"),
+    devuelto: true
+  }
+])
+
+
+db.prestamos.insertMany([
+  {
+    prestamo_id: "P011",
+    user_id: "U011",
+    libro_id: "B011",
+    fecha_prestamo: new Date("2024-10-11"),
+    fecha_devolucion: new Date("2024-10-25"),
+    devuelto: false
+  },
+  {
+    prestamo_id: "P012",
+    user_id: "U012",
+    libro_id: "B012",
+    fecha_prestamo: new Date("2024-10-12"),
+    fecha_devolucion: new Date("2024-10-26"),
+    devuelto: true
+  },
+  {
+    prestamo_id: "P013",
+    user_id: "U013",
+    libro_id: "B013",
+    fecha_prestamo: new Date("2024-10-13"),
+    fecha_devolucion: new Date("2024-10-27"),
+    devuelto: false
+  },
+  {
+    prestamo_id: "P014",
+    user_id: "U014",
+    libro_id: "B014",
+    fecha_prestamo: new Date("2024-10-14"),
+    fecha_devolucion: new Date("2024-10-28"),
+    devuelto: true
+  },
+  {
+    prestamo_id: "P015",
+    user_id: "U015",
+    libro_id: "B015",
+    fecha_prestamo: new Date("2024-10-15"),
+    fecha_devolucion: new Date("2024-10-29"),
+    devuelto: false
+  },
+  {
+    prestamo_id: "P016",
+    user_id: "U016",
+    libro_id: "B016",
+    fecha_prestamo: new Date("2024-10-16"),
+    fecha_devolucion: new Date("2024-10-30"),
+    devuelto: true
+  },
+  {
+    prestamo_id: "P017",
+    user_id: "U017",
+    libro_id: "B017",
+    fecha_prestamo: new Date("2024-10-17"),
+    fecha_devolucion: new Date("2024-10-31"),
+    devuelto: false
+  },
+  {
+    prestamo_id: "P018",
+    user_id: "U018",
+    libro_id: "B018",
+    fecha_prestamo: new Date("2024-10-18"),
+    fecha_devolucion: new Date("2024-11-01"),
+    devuelto: true
+  },
+  {
+    prestamo_id: "P019",
+    user_id: "U019",
+    libro_id: "B019",
+    fecha_prestamo: new Date("2024-10-19"),
+    fecha_devolucion: new Date("2024-11-02"),
+    devuelto: false
+  },
+  {
+    prestamo_id: "P020",
+    user_id: "U020",
+    libro_id: "B020",
+    fecha_prestamo: new Date("2024-10-20"),
+    fecha_devolucion: new Date("2024-11-03"),
+    devuelto: true
+  }
+])
+
+
